@@ -1,0 +1,127 @@
+@font-face {
+    font-family: jedi;
+    src: url('../fonts/Starjedi.ttf');
+}
+
+.header {
+    /* background-color: #e7af14f5; */
+    background-color: #e22929ec;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9; 
+    padding: 10px 10px 14px 10px;
+}
+
+.block1 {
+    width: 15%;
+    float: left;
+} 
+.block2 {
+    width: 70%;
+    float: left;
+} 
+.block3 {
+    width: 15%;
+    float: left;
+} 
+
+.block2>p {
+    color: #0f0f0f;
+    margin:auto;
+    font-size: 38px;
+    font-weight: 600;
+    font-family: jedi;
+    text-align: center;
+}
+
+.vader-logo {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+}
+
+
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url('../assets/stars-bg3.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 120px;
+    margin: 0;
+    min-height: 85%;
+    display: flex;
+    flex-direction: column
+}
+
+.text {
+    flex: 1;
+    padding: 16px;
+    background: #222222b0;
+    text-align: center;
+}
+.text>p {
+    /* color: #fa0909b0; */
+    color: #ffce47;
+    font-size: 24px
+}
+
+.container {
+    /* position: relative; */
+    /* width: 100%; */
+    /* margin: 0 auto; */
+    /* margin: 2px 20px 20px 20px; */
+    /* padding-top: 80px; */
+    flex-direction: column;
+}
+
+.table-div {
+    flex: 1;
+    padding: 60px 180px 60px 180px;
+}
+
+table {
+
+    border-collapse: collapse;
+    width: 100%;
+    background: #000000bd;
+}
+
+thead {
+    background:#104206cc;
+    color: #000;
+}
+
+th, td {
+    color: #fffefe;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #4949499d;
+}
+
+tbody>tr:hover {
+    background-color: #ffef5d1c;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #0e0c0cf5;
+    padding: 30px;
+    text-align: center;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+footer>p {
+    color: #fff;
+    margin: 5px;
+    font-size: 16px;
+    font-weight:500;
+}
