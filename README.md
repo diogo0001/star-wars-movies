@@ -39,7 +39,7 @@ A simple backend script were done in Node.js just to deploy the page on Heroku.
 
 ### Observations
 
-The axios library can present a certain slowness, especially when loading the characters list, which request were done serially and not in parallel (async). Due to being a dynamic list, we could not find an efficient way to make this requests. However, it is a practical library to use.
+The axios library can present a certain slowness when loading the characters list, which requests were done serially and not in parallel (async). Due to being a dynamic list, I could not find an efficient way to make this requests. However, it is a practical library to use.
 
 
 
