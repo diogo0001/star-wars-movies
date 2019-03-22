@@ -1,5 +1,5 @@
 # Star Wars Movies
-This application shows all the Star Wars Movies listed by release year.
+This application shows all the Star Wars Movies sorted by release year.
 
 ## Features
 
