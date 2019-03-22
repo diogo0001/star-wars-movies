@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start":"app.js",
+    "start":"node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,10 +19,10 @@
   "homepage": "https://github.com/diogo0001/star-wars-movies#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "heroku": "*"
+    "heroku": "7.22.7"
   },
   "engines": {
-    "node": "*",
-    "npm": "*"
+    "node": "10.9.0",
+    "npm": "6.2.0"
   }
 }
