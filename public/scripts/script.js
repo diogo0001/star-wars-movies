@@ -2,27 +2,22 @@
 const URL_TO_FETCH = 'https://swapi.co/api/films';
 
 // ---------------------------------------------------------------------------------------
-// Fetch the data for each situation
-const getData = (apiURL,sel) => {
+// Fetch the main data for listing
+const getData = (apiURL) => {
   axios.get(apiURL)
     .then((response) => {
-      initialMsg(true,sel);
-      if(sel=='load'){
-        displayTable(response.data);
-      } else {
-        detailsContents(response.data);
-      }
+      initialMsg(true);
+      displayTable(response.data);
     })
     .catch((error) => {
-      console.log(error);
-      initialMsg(false,sel);
+      console.log("Load data: "+error);
+      initialMsg(false);
     });
 }
 
 // ---------------------------------------------------------------------------------------
 // Show the list 
 const displayTable = (data) => {
-  // console.log('itens: ',data.results.length)
 
   // sort by release year
   data.results.sort((a,b)=>{
@@ -67,14 +62,6 @@ const convertDate = (date) => {
 // ---------------------------------------------------------------------------------------
 // Create dynamic elements and handle the data of selected movie
 const handleClick = (data) =>{
-  // console.log('Title: '+data.title);
-  // console.log('Director: '+data.director);
-  // console.log('characters: '+data.characters);
-  // console.log('planets: '+data.planets);
-  // console.log('starships: '+data.starships);
-  // console.log('vehicles: '+data.vehicles);
-  // console.log('opening_crawl: '+data.opening_crawl);
-
 
   // create details container dinamically
   var div = document.querySelector('.details-container');
@@ -84,9 +71,6 @@ const handleClick = (data) =>{
   var directorBody = document.createElement('p');
   var sinopseHead = document.createElement('p');
   var sinopseBody = document.createElement('p');
-  var charactersHead = document.createElement('p');
-  var charactersBody = document.createElement('p');
-  var btn = document.createElement('button');
 
   divText.className = "details";
   title.className = "title";
@@ -94,31 +78,18 @@ const handleClick = (data) =>{
   directorBody.className = "content-body";
   sinopseHead.className = "content-head";
   sinopseBody.className = "content-body";
-  charactersHead.className = "content-head";
-  charactersBody.className = "content-body";
-  btn.className = "btn";
 
   title.innerHTML = data.title;
   directorHead.innerHTML = "Director";
   directorBody.innerHTML = data.director;
   sinopseHead.innerHTML = "Sinopse";
   sinopseBody.innerHTML = data.opening_crawl;
-  charactersHead.innerHTML = "Characters";
-  charactersBody.innerHTML  = data.characters[0];
-  btn.innerHTML = "Clear";
   
   divText.appendChild(title);
   divText.appendChild(directorHead);
   divText.appendChild(directorBody);
   divText.appendChild(sinopseHead);
   divText.appendChild(sinopseBody);
-  divText.appendChild(charactersHead);
-  divText.appendChild(charactersBody);
-  divText.appendChild(btn);
-
-  btn.addEventListener('click',()=>{
-    div.removeChild(div.childNodes[0]);
-  });
 
   // clear previous
   if(div.childNodes.length>0){
@@ -126,26 +97,65 @@ const handleClick = (data) =>{
   }
   div.appendChild(divText);
 
+  window.scroll({
+    top: 2500, 
+    left: 0, 
+    behavior:"smooth"
+  });
 
-  // last
-  // for(i=0;i<data.characters.length;i++){
-  //   getData(data.characters[i],'characters');
-  // }
+  fetchChars(data.characters);
 }
 
 // ---------------------------------------------------------------------------------------
-// Load details data
-const detailsContents = (data) =>{
-  console.log(data.name);
+// Fetch characters data
+const fetchChars = async (charsUrls) =>{
 
-  var detailsBox = document.getElementById('.detais');
-  var characters = document.createElement('p');
-  characters.innerHTML = data.characters;
+  var div = document.querySelector('.details');
+  var charactersHead = document.createElement('p');
+  var charactersBody = document.createElement('p');
+  charactersHead.className = "content-head";
+  charactersHead.innerHTML = "Characters";
+  charactersBody.className = "content-body";
+  var list = "";
+
+  // the best way would be to do paralel requests, but dinamically it gets hard
+  // to build something that works well.. so this way works, even if slowly
+  for(i=0;i<charsUrls.length;i++){
+    const response = await axios.get(charsUrls[i])
+        .then((response) => { list = list+response.data.name+"<br>"; })
+        .catch((error) => console.log("Load characters: "+error));
+  }
+
+  charactersBody.innerHTML = list;
+  div.appendChild(charactersHead);
+  div.appendChild(charactersBody);
+  console.log(list);
+  addBtn(div);
+}
+
+// ---------------------------------------------------------------------------------------
+// Create a clear button only after the requests were done
+const addBtn = (div) =>{
+  var btn = document.createElement('button');
+  btn.innerHTML = "Clear";
+  btn.className = "btn";
+  div.appendChild(btn);
+
+  // clear by button
+  var divParent = document.querySelector('.details-container');
+  btn.addEventListener('click',()=>{
+    divParent.removeChild(divParent.childNodes[0]);
+    window.scroll({
+      top: 40, 
+      left: 0, 
+      behavior:"smooth"
+    });
+  });
 }
 
 // ---------------------------------------------------------------------------------------
 // Show the message acordingly data status
-const initialMsg = (isLoaded,sel) => {
+const initialMsg = (isLoaded) => {
   var divText = document.getElementById('div-text');
   var p = document.createElement('p');
 
@@ -153,18 +163,15 @@ const initialMsg = (isLoaded,sel) => {
     p.innerHTML = "We had a problem on loading data, sorry! :(";
     divText.appendChild(p);
   } else {
-    if(sel=='load'){
-        p.innerHTML = "Here are all the SW movies listed for you!";
-        var p2 = document.createElement('p');
-        p2.innerHTML = "You can select the movie to see more information about it :)";
-        divText.appendChild(p);
-        divText.appendChild(p2);
-    }
+    p.innerHTML = "Here are all the SW movies listed for you!";
+    var p2 = document.createElement('p');
+    p2.innerHTML = "You can select the movie to see more information about it :)";
+    divText.appendChild(p);
+    divText.appendChild(p2);
   }
 }
 
 // ---------------------------------------------------------------------------------------
 // Calls the first time
-getData(URL_TO_FETCH,'load');
-
+getData(URL_TO_FETCH);
 

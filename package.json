@@ -1,14 +1,22 @@
 {
-  "name": "swapi",
+  "name": "star-wars-movies",
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Diogo Tavares",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogo0001/star-wars-movies.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diogo0001/star-wars-movies/issues"
+  },
+  "homepage": "https://github.com/diogo0001/star-wars-movies#readme"
 }
