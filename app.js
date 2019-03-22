@@ -11,4 +11,4 @@ app.get('/',(req, res) => {
 });
 
 app.listen(port);
-console.log("Conectado à porta: "+port)
+console.log("Connected to the port: "+port)
