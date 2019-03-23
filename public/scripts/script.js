@@ -2,7 +2,7 @@
 const URL_TO_FETCH = 'https://swapi.co/api/films';
 
 // ---------------------------------------------------------------------------------------
-// Fetch the main data for listing
+// Fetch the main data for listing.. (it would be nice to implement data caching)
 const getData = (apiURL) => {
   axios.get(apiURL)
     .then((response) => {

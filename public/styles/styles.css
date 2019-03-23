@@ -109,6 +109,13 @@ tbody>tr:hover {
     cursor: pointer;
 }
 
+tbody>tr:active {
+    background-color: #694120ce;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+
 .details {
     flex: 1;
     background: #000000c4;
@@ -118,6 +125,7 @@ tbody>tr:hover {
     border-radius: 8px;
     color: #fff;
     padding: 0 90px 20px 90px;
+    box-shadow: 0 0 8px 1px #6d6d6d80;
 }
 
 .title {
@@ -146,21 +154,22 @@ tbody>tr:hover {
 
 .btn {
     text-align: center;
-    background: #104206cc;
+    background: #104206fd;
     font-size: 16px;
     border: 1px solid #d3d3d300;
     border-radius: 8px;
     color: #ffffff;
-    font-weight: 500;
+    font-weight: 600;
     padding: 8px 26px 8px 26px;
     cursor: pointer;
     position: relative;
     margin-left: 50%;
     transform: translateX(-50%);
+    -webkit-transition: 0.5s;
 }
 .btn:hover {
-    background: #ebbd26f1;
     transition: 0.4s;
+    box-shadow: 0 0 4px 2px #6d6d6dc0;
 }
 
 footer {
