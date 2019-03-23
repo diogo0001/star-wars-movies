@@ -25,9 +25,9 @@ For this application were used:
  - [HTML](https://www.w3schools.com/html/default.asp) - for page structure.
  - [CSS](https://www.w3schools.com/css/default.asp) - for styles.
  
-The data fetching were done with axios, one JS library for this porpouse.
+The data fetching was done with axios, one JS library for this porpouse.
 
-A simple backend script were done in Node.js just to deploy the page on Heroku.
+A simple backend script was done in Node.js just to deploy the page on Heroku.
 
 ## Dependencies
 
@@ -39,7 +39,7 @@ A simple backend script were done in Node.js just to deploy the page on Heroku.
 
 ### Observations
 
-The axios library can present a certain slowness when loading the characters list, which requests were done serially and not in parallel (async). Due to being a dynamic list, I could not find an efficient way to make this requests. However, it is a practical library to use.
+The axios library can present a certain slowness when loading the characters list, which requests were done serially in a loop and not in parallel (async). Due to being a dynamic list, I could not find an efficient way to make this requests. However, it is a practical library to use.
 
 
 
