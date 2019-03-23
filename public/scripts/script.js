@@ -36,8 +36,7 @@ const displayTable = (data) => {
   tr.insertCell(-1).innerHTML = 'Episode';
  
   // table data
-  for (i = 0; i < data.results.length; i++) {
-      // console.log(data.results[i].title);
+  for (i=0; i < data.results.length; i++) {
       tr = table.insertRow(-1);
       tr.insertCell(-1).innerHTML = data.results[i].title;
       tr.insertCell(-1).innerHTML = convertDate(data.results[i].release_date);
@@ -120,11 +119,14 @@ const fetchChars = async (charsUrls) =>{
 
   // the best way would be to do paralel requests, but dinamically it gets hard
   // to build something that works well.. so this way works, even if slowly
-  for(i=0;i<charsUrls.length;i++){
+  for(i=0;i<charsUrls.length-1;i++){
     const response = await axios.get(charsUrls[i])
-        .then((response) => { list = list+response.data.name+"<br>"; })
+        .then((response) => { list = list+response.data.name+", "; })
         .catch((error) => console.log("Load characters: "+error));
   }
+  const response = await axios.get(charsUrls[i])
+        .then((response) => { list = list+response.data.name+"."; })  // just to not put a comma in the last
+        .catch((error) => console.log("Load characters: "+error));
 
   charactersBody.innerHTML = list;
   div.appendChild(charactersHead);
