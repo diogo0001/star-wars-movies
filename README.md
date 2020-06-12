@@ -1,4 +1,4 @@
-# Star Wars Movies
+# Star Wars Movies (API indisponível)
 This application shows all the Star Wars Movies sorted by release year.
 
 ## Features
